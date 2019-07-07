@@ -14,3 +14,4 @@ script:
   - ls -hal
   - cat ansible.cfg
   - cat tests/inventory
+  - ansible-playbook tests/test.yml
