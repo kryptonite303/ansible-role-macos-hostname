@@ -16,3 +16,7 @@
 - name: Work out and set macOS HostName.
   include_tasks: "tasks/hostname.yml"
   when: "mh_hostname is defined"
+
+- name: Work out and set macOS LocalHostName.
+  include_tasks: "tasks/localhostname.yml"
+  when: "mh_localhostname is defined"
