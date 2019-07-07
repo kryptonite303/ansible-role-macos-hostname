@@ -1,0 +1,6 @@
+---
+- name: Test ctorgalson.macos_hostname role on macOS infrastructure.
+  hosts: all
+  gather_facts: true
+  roles:
+    - ansible-role-macos-hostname
