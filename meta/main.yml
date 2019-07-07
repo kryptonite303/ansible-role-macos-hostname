@@ -6,6 +6,8 @@ galaxy_info:
 
   license: GPLv3
 
+  role_name: macos-hostname
+
   min_ansible_version: 2.5
 
   platforms:
