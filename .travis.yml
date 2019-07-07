@@ -1,13 +1,6 @@
 ---
-os:
-  - osx
+os: osx
 
-    # language: python
-    # python: "2.7"
-
-pre_install:
-  - which python
-  - which pip
 install:
   - pip install --upgrade pip
   - pip install ansible
