@@ -4,6 +4,7 @@ osx_image: xcode10.2
 
 install:
   - which scutil
+  - sudo scutil --set HostName "TravisCI"
   - sudo scutil --set LocalHostName "TravisCI"
   - sudo scutil --set ComputerName "Travis Mac"
   - pip install --upgrade pip
