@@ -12,3 +12,4 @@
   command: "scutil --set HostName {{ mh_hostname }}"
   when: "mh_derived_hostname is defined"
   become: true
+  notify: clear dns cache
