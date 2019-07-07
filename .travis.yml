@@ -1,13 +1,14 @@
 ---
 os: osx
+osx_image: xcode10.2
 
 install:
+  - scutil --set HostName "TravisCI"
+  - scutil --set LocalHostName "TravisCI"
+  - scutil --set ComputerName "Travis Mac"
   - pip install --upgrade pip
   - pip install ansible
   - mv tests/ansible.cfg .
 
 script:
-  - ls -hal
-  - cat ansible.cfg
-  - cat tests/inventory
-  - ansible-playbook tests/test.yml --connection=local
+  - ansible-playbook tests/test.yml --connection=local -vv
