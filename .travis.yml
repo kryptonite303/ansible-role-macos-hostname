@@ -1,0 +1,16 @@
+---
+os:
+  - osx
+
+language: python
+python: "3.6"
+
+install:
+  - pip install --upgrade pip
+  - pip install ansible
+  - mv tests/ansible.cfg .
+
+script:
+  - ls -hal
+  - cat ansible.cfg
+  - cat tests/inventory
