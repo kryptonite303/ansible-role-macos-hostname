@@ -1,0 +1,24 @@
+---
+# ComputerName tasks file for ansible-role-macos-hostname.
+#
+# Derives (if necessary) and sets ComputerName.
+
+- name: Find out the current macOS ComputerName value.
+  command: "scutil --get ComputerName"
+  register: "mh_current_computername"
+  changed_when: false
+
+- name: Determine the desired macOS ComputerName value.
+  set_fact:
+    mh_derived_computername: "{{ (mh_computername == 'auto') | ternary('mh_derived_product', mh_computername) }}"
+  when:
+    - "mh_computername is defined"
+    - "mh_computername != false"
+
+- name: Set macOS ComputerName.
+  command: "scutil --set ComputerName {{ mh_derived_computername }}"
+  when:
+    - "mh_derived_computername is defined"
+    - "mh_derived_computername != mh_current_computername.stdout"
+  become: true
+  notify: clear dns cache
