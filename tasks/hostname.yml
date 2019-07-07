@@ -3,13 +3,22 @@
 #
 # Derives (if necessary) and sets HostName.
 
+- name: Find out the current macOS HostName value.
+  command: "scutil --get HostName"
+  register: "mh_current_hostname"
+  changed_when: false
+
 - name: Determine the desired macOS HostName value.
   set_fact:
     mh_derived_hostname: "{{ (mh_hostname == 'auto') | ternary(mh_derived_product_lower + '.' + mh_domain, mh_hostname) }}"
-  when: "mh_hostname is defined and mh_hostname"
+  when:
+    - "mh_hostname is defined"
+    - "mh_hostname != false"
 
 - name: Set macOS HostName.
   command: "scutil --set HostName {{ mh_derived_hostname }}"
-  when: "mh_derived_hostname is defined"
+  when:
+    - "mh_derived_hostname is defined"
+    - "mh_derived_hostname != mh_current_hostname.stdout"
   become: true
   notify: clear dns cache
