@@ -3,6 +3,7 @@ os: osx
 osx_image: xcode10.2
 
 install:
+  - which scutil
   - scutil --set LocalHostName "TravisCI"
   - scutil --set ComputerName "Travis Mac"
   - pip install --upgrade pip
