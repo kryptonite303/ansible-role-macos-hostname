@@ -1,24 +1,19 @@
 ---
 # HostName tasks file for ansible-role-macos-hostname.
 #
-# Derives (if necessary) and sets HostName.
+# Sets HostName.
 
 - name: Find out the current macOS HostName value.
   command: "scutil --get HostName"
   register: "mh_current_hostname"
   changed_when: false
-
-- name: Determine the desired macOS HostName value.
-  set_fact:
-    mh_derived_hostname: "{{ (mh_hostname == 'auto') | ternary(mh_derived_product_lower + '.' + mh_domain, mh_hostname) }}"
-  when:
-    - "mh_hostname is defined"
-    - "mh_hostname != false"
+  # If the HostName is not set--this is often true, `scutil --get HostName`
+  # returns an error code (d'oh!) with the empty string stdout that we _want_.
+  failed_when: false
 
 - name: Set macOS HostName.
-  command: "scutil --set HostName {{ mh_derived_hostname }}"
+  command: "scutil --set HostName {{ mh_hostname }}"
   when:
-    - "mh_derived_hostname is defined"
-    - "mh_derived_hostname != mh_current_hostname.stdout"
+    - "mh_hostname != mh_current_hostname.stdout"
   become: true
   notify: clear dns cache

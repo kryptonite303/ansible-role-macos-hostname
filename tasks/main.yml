@@ -1,18 +1,6 @@
 ---
 # tasks file for ansible-role-macos-hostname
 
-- name: Get machine-safe product name in CamelCase and lowercase from Ansible.
-  block:
-    - name: Get CamelCased machine-safe product name from Ansible.
-      set_fact:
-        mh_derived_product: "{{ ansible_product_name | regex_replace('[,\\.]', '-') }}"
-
-    - name: Get lowercased machine-safe product name from Ansible.
-      set_fact:
-        mh_derived_product_lower: "{{ mh_derived_product | lower }}"
-
-  when: "'auto' in [mh_hostname, mh_localhostname, mh_computername]"
-
 - name: Work out and set macOS HostName.
   include_tasks: "tasks/hostname.yml"
   when: "mh_hostname is defined"
