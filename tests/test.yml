@@ -39,5 +39,5 @@
 
         - name: Check mh_computername against ComputerName.
           assert:
-            that: "text_computername.stdout == mh_computername"
+            that: "test_computername.stdout == mh_computername"
             fail_msg: "'mh_computername' should be '{{ test_computername.stdout }}'."
