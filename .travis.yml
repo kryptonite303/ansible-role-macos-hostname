@@ -6,7 +6,6 @@ install:
   - sudo scutil --set HostName "travisunmofified.example.com"
   - sudo scutil --set LocalHostName "TravisUnmodified"
   - sudo scutil --set ComputerName "Travis Mac Unmodified"
-  - brew install python3
   - pip3 install ansible ansible-lint yamllint
   - yamllint .
   - ansible-lint .
