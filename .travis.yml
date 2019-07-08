@@ -13,8 +13,3 @@ install:
 
 script:
   - ansible-playbook tests/test.yml --connection=local -vv
-
-# To-do:
-# 1. Add testing to make sure the results are as intended.
-# 2. Rejig the role so that we preferentially do NOT set a value for HostName
-#    (@see https://apple.stackexchange.com/questions/30552/os-x-computer-name-not-matching-what-shows-on-terminal: multiple users advise against it).
