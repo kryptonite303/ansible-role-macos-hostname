@@ -1,24 +1,17 @@
 ---
 # LocalHostName tasks file for ansible-role-macos-hostname.
 #
-# Derives (if necessary) and sets LocalHostName.
+# Sets LocalHostName.
 
 - name: Find out the current macOS LocalHostName value.
   command: "scutil --get LocalHostName"
   register: "mh_current_localhostname"
   changed_when: false
-
-- name: Determine the desired macOS LocalHostName value.
-  set_fact:
-    mh_derived_localhostname: "{{ (mh_localhostname == 'auto') | ternary(mh_derived_product, mh_localhostname) }}"
-  when:
-    - "mh_localhostname is defined"
-    - "mh_localhostname != false"
+  failed_when: false
 
 - name: Set macOS LocalHostName.
-  command: "scutil --set LocalHostName {{ mh_derived_localhostname }}"
+  command: "scutil --set LocalHostName '{{ mh_localhostname }}'"
   when:
-    - "mh_derived_localhostname is defined"
-    - "mh_derived_localhostname != mh_current_localhostname.stdout"
+    - "mh_localhostname != mh_current_localhostname.stdout"
   become: true
   notify: clear dns cache

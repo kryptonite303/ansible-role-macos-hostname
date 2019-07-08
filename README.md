@@ -12,13 +12,13 @@ No special requirements.
 
 - The output column of the following table assumes the role is being run on a MacBookPro 14.1.
 - The properties `HostName`, `LocalHostName`, and `ComputerName` referred to in the table are keywords used with the `scutil` command on macOS.
+- Setting a value for `HostName` may have unpredictable or confusing results. See the answers to this [Stack Overflow question](https://apple.stackexchange.com/questions/30552/os-x-computer-name-not-matching-what-shows-on-terminal) for more information.
 
-| Variable name      | Default value | Output | Description |
-|--------------------|---------------|--------|-------------|
-| `mh_domain`        | `example.com` | -      | Network domain for use in automatic HostName. |
-| `mh_hostname`      | `auto`        | `macbookpro14-1.example.com` | The HostName to set or `auto` (see "Output" column). |
-| `mh_localhostname` | `auto`        | `MacBookPro14-1` | The LocalHostName to set or `auto` (see "Output" column). |
-| `mh_computername`  | `auto`        | `MacBookPro14-1` | The ComputerName to set or `auto` (see "Output" column). |
+| Variable name      | Default value     | Description               |
+|--------------------|-------------------|---------------------------|
+| `mh_hostname`      | `''`              | The HostName to set.      |
+| `mh_localhostname` | `MhLocalHostName` | The LocalHostName to set. |
+| `mh_computername`  | `MhComputerName`  | The ComputerName to set.  |
 
 ## Example Playbook
 
