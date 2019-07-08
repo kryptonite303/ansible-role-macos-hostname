@@ -3,7 +3,7 @@
   hosts: all
   gather_facts: true
   vars:
-    mh_hostname: "travis-ci.{{ mh_domain }}"
+    mh_hostname: "travis-ci.example.com"
     mh_localhostname: "TravisCI"
     mh_computername: "Travis Mac"
   roles:
