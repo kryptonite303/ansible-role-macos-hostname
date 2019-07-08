@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Christopher Torgalson
-  description: An Ansible role to set HostName, LocalHostName, and ComputerName on macOS.
+  description: A role to set HostName, LocalHostName, and ComputerName on macOS.
   company: Bedlam Hotel
 
   license: GPLv3
