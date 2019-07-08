@@ -3,22 +3,22 @@
   hosts: all
   gather_facts: true
   vars:
-    mh_domain: "example.com"
     mh_hostname: "travis-ci.{{ mh_domain }}"
     mh_localhostname: "TravisCI"
     mh_computername: "Travis Mac"
   roles:
     - ansible-role-macos-hostname
   tasks:
-    - name: Verify domain value.
-      assert:
-        that: "ansible_domain == mh_domain"
-        fail_msg: "'mh_domain' should be '{{ ansible_domain }}'."
-
     - name: Verify HostName value.
-      assert:
-        that: "ansible_fqdn == mh_hostname"
-        fail_msg: "'mh_hostname' should be '{{ ansible_fqdn }}'."
+      block:
+        - name: Get HostName value.
+          command: "scutil --get HostName"
+          register: text_hostname
+
+        - name: Check mh_hostname against HostName.
+          assert:
+            that: "test_hostname.stdout == mh_hostname"
+            fail_msg: "'mh_hostname' should be '{{ ansible_fqdn }}'."
 
     - name: Verify LocalHostname value.
       block:
