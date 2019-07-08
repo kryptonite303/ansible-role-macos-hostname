@@ -2,13 +2,13 @@
 # tasks file for ansible-role-macos-hostname
 
 - name: Work out and set macOS HostName.
-  include_tasks: "tasks/hostname.yml"
+  include_tasks: "hostname.yml"
   when: "mh_hostname is defined"
 
 - name: Work out and set macOS LocalHostName.
-  include_tasks: "tasks/localhostname.yml"
+  include_tasks: "localhostname.yml"
   when: "mh_localhostname is defined"
 
 - name: Work out and set macOS ComputerName.
-  include_tasks: "tasks/computername.yml"
+  include_tasks: "computername.yml"
   when: "mh_computername is defined"

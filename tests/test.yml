@@ -18,7 +18,8 @@
         - name: Check mh_hostname against HostName.
           assert:
             that: "test_hostname.stdout == mh_hostname"
-            fail_msg: "'mh_hostname' should be '{{ ansible_fqdn }}'."
+            fail_msg: >
+              'mh_hostname' should be '{{ ansible_fqdn }}'.
 
     - name: Verify LocalHostname value.
       block:
@@ -29,7 +30,8 @@
         - name: Check mh_localhostname against LocalHostName.
           assert:
             that: "test_localhostname.stdout == mh_localhostname"
-            fail_msg: "'mh_localhostname' should be '{{ test_localhostname.stdout }}'."
+            fail_msg: >
+              'mh_localhostname' should be '{{ test_localhostname.stdout }}'.
 
     - name: Verify ComputerName value.
       block:
@@ -40,4 +42,5 @@
         - name: Check mh_computername against ComputerName.
           assert:
             that: "test_computername.stdout == mh_computername"
-            fail_msg: "'mh_computername' should be '{{ test_computername.stdout }}'."
+            fail_msg: >
+              'mh_computername' should be '{{ test_computername.stdout }}'.

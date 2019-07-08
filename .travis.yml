@@ -3,18 +3,14 @@ os: osx
 osx_image: xcode10.2
 
 install:
-  - which scutil
   - sudo scutil --set HostName "travisunmofified.example.com"
   - sudo scutil --set LocalHostName "TravisUnmodified"
   - sudo scutil --set ComputerName "Travis Mac Unmodified"
-  - pip install --upgrade pip
-  - pip install ansible
+  - brew install python3
+  - pip3 install ansible ansible-lint yamllint
+  - yamllint .
+  - ansible-lint .
   - mv tests/ansible.cfg .
 
 script:
   - ansible-playbook tests/test.yml --connection=local -vv
-
-# To-do:
-# 1. Add testing to make sure the results are as intended.
-# 2. Rejig the role so that we preferentially do NOT set a value for HostName
-#    (@see https://apple.stackexchange.com/questions/30552/os-x-computer-name-not-matching-what-shows-on-terminal: multiple users advise against it).

@@ -1,5 +1,7 @@
 # Ansible Role macOS Hostname
 
+[![Build Status](https://travis-ci.com/ctorgalson/ansible-role-macos-hostname.svg?branch=master)](https://travis-ci.com/ctorgalson/ansible-role-macos-hostname)
+
 A simple Ansible role to set HostName, LocalHostName, and ComputerName on macOS.
 
 ## Requirements
