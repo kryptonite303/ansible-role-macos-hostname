@@ -13,7 +13,7 @@
       block:
         - name: Get HostName value.
           command: "scutil --get HostName"
-          register: text_hostname
+          register: test_hostname
 
         - name: Check mh_hostname against HostName.
           assert:
