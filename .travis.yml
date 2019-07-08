@@ -3,12 +3,13 @@ os: osx
 osx_image: xcode10.2
 
 install:
-  - which scutil
   - sudo scutil --set HostName "travisunmofified.example.com"
   - sudo scutil --set LocalHostName "TravisUnmodified"
   - sudo scutil --set ComputerName "Travis Mac Unmodified"
   - pip install --upgrade pip
-  - pip install ansible
+  - pip install ansible yamllint
+  - yamllint .
+  - ansible-lint .
   - mv tests/ansible.cfg .
 
 script:
