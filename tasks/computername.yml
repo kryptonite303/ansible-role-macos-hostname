@@ -10,7 +10,7 @@
   failed_when: false
 
 - name: Set macOS ComputerName.
-  command: "scutil --set ComputerName {{ mh_computername }}"
+  command: "scutil --set ComputerName '{{ mh_computername }}'"
   when:
     - "mh_computername != mh_current_computername.stdout"
   become: true

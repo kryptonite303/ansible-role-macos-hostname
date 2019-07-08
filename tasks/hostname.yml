@@ -12,7 +12,7 @@
   failed_when: false
 
 - name: Set macOS HostName.
-  command: "scutil --set HostName {{ mh_hostname }}"
+  command: "scutil --set HostName '{{ mh_hostname }}'"
   when:
     - "mh_hostname != mh_current_hostname.stdout"
   become: true
