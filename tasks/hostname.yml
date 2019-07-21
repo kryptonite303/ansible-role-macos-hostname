@@ -12,8 +12,7 @@
   failed_when: false
 
 - name: Set macOS HostName.
-  command: "scutil --set HostName '{{ mh_hostname }}'"
-  when:
-    - "mh_hostname != mh_current_hostname.stdout"
+  command: >
+    scutil --set HostName '{{ mh_hostname | default("") }}'
   become: true
   notify: clear dns cache
