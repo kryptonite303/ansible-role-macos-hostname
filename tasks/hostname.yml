@@ -13,7 +13,11 @@
 
 - name: Set macOS HostName.
   command: "scutil --set HostName '{{ mh_hostname }}'"
-  when:
-    - "mh_hostname != mh_current_hostname.stdout"
   become: true
+  when: >
+    mh_hostname is defined
+    or (
+      mh_current_hostname.stdout is defined
+      and mh_current_hostname.stdout != mh_current_hostname
+    )
   notify: clear dns cache
